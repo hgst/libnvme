@@ -6,7 +6,7 @@ libnvme provides a user space driver for NVMe PCI devices.
 
 libnvme is based on code  from the Storage Performance Development Kit
 (SPDK)  available  at  https://github.com/spdk/spdk.  in  its  current
-version, libnvme API is very similar  to that of SPDK. Hoever, libnvme
+version, libnvme API is very similar to that of SPDK. However, libnvme
 removes all dependencies on the  Data Plane Development Kit (DPDK). To
 this  end, some  functions  necessary to  the  library operation  were
 reimplemented.  This mainly  consists of  memory management  functions
@@ -35,10 +35,10 @@ PURPOSE.  Along with  libnvme, you should have received a  copy of the
 BSD      2-clause      license.       If     not,      please      see
 <http://opensource.org/licenses/BSD-2-Clause>.
 
-Documentaion
-============
+Documentation
+=============
 
-libnvme API documentaion  can be generated using  doxygen. To generate
+libnvme API documentation  can be generated using doxygen. To generate
 documentation  in  html  format,   the  libnvme.doxygen  file  in  the
 documentation directory can be used.
 
@@ -51,14 +51,14 @@ Contact and Bug Reports
 Please contact Damien Le Moal (damien.lemoal@wdc.com) or
  Christophe Louargant (christophe.louargant@wdc.com) to report problems.
 
-Requiremensts
-=============
+Requirements
+============
 
 To build libnvme, the following dependencies must be installed.
 
 * libpciaccess  and associated  development headers  (libpciaccess and
   libpciaccess-devel)
-* libnuma  and  associated  developement  headers (numactl-libs and
+* libnuma  and  associated  development  headers (numactl-libs and
   numactl-devel)
 * autotools GNU  development tools (autoconf and automake)
 
