@@ -1,0 +1,57 @@
+NVME_GLOBAL {
+global:
+
+	nvme_lib_init;
+
+	nvme_set_log_facility;
+	nvme_get_log_facility;
+	nvme_set_log_level;
+	nvme_get_log_level;
+
+	nvme_ctrlr_open;
+	nvme_ctrlr_close;
+	nvme_ctrlr_stat;
+	nvme_ctrlr_data;
+	nvme_ctrlr_set_feature;
+	nvme_ctrlr_get_feature;
+	nvme_ctrlr_update_firmware;
+
+	nvme_ctrlr_attach_ns;
+	nvme_ctrlr_detach_ns;
+	nvme_ctrlr_create_ns;
+	nvme_ctrlr_delete_ns;
+
+	nvme_ioqp_get;
+	nvme_ioqp_release;
+	nvme_ioqp_submit_cmd;
+	nvme_ioqp_poll;
+	nvme_qpair_stat;
+
+	nvme_ns_open;
+	nvme_ns_close;
+	nvme_ns_stat;
+	nvme_ns_data;
+
+	nvme_ns_write;
+	nvme_ns_writev;
+	nvme_ns_write_with_md;
+	nvme_ns_write_zeroes;
+	nvme_ns_read;
+	nvme_ns_readv;
+	nvme_ns_read_with_md;
+	nvme_ns_deallocate;
+	nvme_ns_flush;
+
+	nvme_ns_format;
+	nvme_ns_reservation_register;
+	nvme_ns_reservation_release;
+	nvme_ns_reservation_acquire;
+	nvme_ns_reservation_report;
+
+	nvme_malloc_node;
+	nvme_free;
+	nvme_memstat;
+
+local:
+	*;
+};

@@ -1,0 +1,26 @@
+
+UTILS_CFILES = \
+	lib/common/nvme_common.c \
+	lib/common/nvme_log.c \
+	lib/common/nvme_cpu.c \
+        lib/common/nvme_pci.c \
+	lib/common/nvme_mem.c
+
+UTILS_HFILES = \
+        include/libnvme/nvme.h \
+        include/libnvme/nvme_spec.h \
+	lib/common/nvme_arch.h \
+	lib/common/nvme_atomic.h \
+	lib/common/nvme_rwlock.h \
+	lib/common/nvme_spinlock.h \
+	lib/common/nvme_common.h \
+	lib/common/nvme_log.h \
+	lib/common/nvme_cpu.h \
+        lib/common/nvme_pci.h \
+	lib/common/nvme_mem.h
+
+AM_CPPFLAGS += -Ilib/common
+
+libnvme_common_la_SOURCES = $(UTILS_HFILES) $(UTILS_CFILES)
+libnvme_common_la_CFLAGS = $(AM_CPPFLAGS)
+

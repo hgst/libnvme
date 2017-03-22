@@ -1,0 +1,31 @@
+
+NVME_CFILES = \
+	lib/nvme/nvme.c \
+	lib/nvme/nvme_request.c \
+	lib/nvme/nvme_ctrlr.c \
+	lib/nvme/nvme_admin.c \
+	lib/nvme/nvme_ns.c \
+	lib/nvme/nvme_qpair.c \
+	lib/nvme/nvme_quirks.c
+
+NVME_HFILES = \
+	include/libnvme/nvme.h \
+        include/libnvme/nvme_spec.h \
+	lib/common/nvme_arch.h \
+	lib/common/nvme_atomic.h \
+	lib/common/nvme_rwlock.h \
+	lib/common/nvme_spinlock.h \
+	lib/common/nvme_common.h \
+	lib/common/nvme_log.h \
+	lib/common/nvme_cpu.h \
+        lib/common/nvme_pci.h \
+	lib/common/nvme_mem.h
+
+AM_CPPFLAGS += -Ilib/nvme -Ilib/common
+
+libnvme_la_SOURCES = $(NVME_CFILES) $(NVME_HFILES)
+libnvme_la_CFLAGS = $(AM_CPPFLAGS)
+libnvme_la_LIBADD = libnvme_common.la
+libnvme_la_LDFLAGS = -lnuma -Wl,--version-script,$(top_srcdir)/exports \
+		     -release '$(PACKAGE_VERSION)'
+

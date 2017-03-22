@@ -1,0 +1,6 @@
+
+pkginclude_HEADERS += \
+	include/libnvme/nvme.h \
+	include/libnvme/nvme_spec.h
+
+noinst_HEADERS +=
