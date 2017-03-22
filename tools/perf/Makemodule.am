@@ -2,7 +2,7 @@ bin_PROGRAMS += nvme_perf
 
 nvme_perf_SOURCES = tools/perf/nvme_perf.c
 
-nvme_perf_LDFLAGS = 
+nvme_perf_LDFLAGS = -lrt
 
 nvme_perf_LDADD = $(libnvme_ldadd)
 nvme_perf_LDADD += -lpthread -lpciaccess -lnvme

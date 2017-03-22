@@ -2,7 +2,7 @@ bin_PROGRAMS += nvme_info
 
 nvme_info_SOURCES = tools/info/nvme_info.c
 
-nvme_info_LDFLAGS =
+nvme_info_LDFLAGS = -lrt
 
 nvme_info_LDADD = $(libnvme_ldadd)
 nvme_info_LDADD += -lpthread -lpciaccess -lnvme
