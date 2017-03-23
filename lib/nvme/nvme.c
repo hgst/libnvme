@@ -112,11 +112,12 @@ static struct pci_device *nvme_pci_ctrlr_probe(const char *slot_name)
 	if (domain) {
 		slot.domain = (uint32_t)strtoul(domain, &end, 16);
 		if ((end && *end) || (slot.domain > 0xffff)) {
-			nvme_err("Invalid bus number: 0x%X\n", slot.domain);
+			nvme_err("Invalid domain number: 0x%X\n", slot.domain);
 			return NULL;
 		}
-	} else
+	} else {
 		slot.domain = PCI_MATCH_ANY;
+	}
 
 	slot.bus = (uint32_t)strtoul(bus, &end, 16);
 	if ((end && *end) || (slot.bus > 0xff)) {
@@ -126,7 +127,7 @@ static struct pci_device *nvme_pci_ctrlr_probe(const char *slot_name)
 
 	slot.dev = strtoul(dev, &end, 16);
 	if ((end && *end) || (slot.dev > 0x1f)) {
-		nvme_err("Invalid dev number: 0x%X\n", slot.dev);
+		nvme_err("Invalid device number: 0x%X\n", slot.dev);
 		return NULL;
 	}
 
