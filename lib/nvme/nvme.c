@@ -71,7 +71,7 @@ out:
  */
 static struct pci_device *nvme_pci_ctrlr_probe(const char *slot_name)
 {
-	char *domain = NULL, *bus = NULL, *dev = NULL, *func = NULL;
+	char *domain = NULL, *bus = NULL, *dev = NULL, *func = NULL, *end = NULL;
 	char *pciid = strdup(slot_name);
 	struct pci_slot_match slot;
 	struct pci_device *pci_dev = NULL;
@@ -109,16 +109,35 @@ static struct pci_device *nvme_pci_ctrlr_probe(const char *slot_name)
 		goto out;
 	}
 
-	nvme_debug("PCI URL: domain %s, bus %s, dev %s, func %s\n",
-		   domain, bus, dev, func);
-
-	if (domain)
-		slot.domain = atoi(domain);
-	else
+	if (domain) {
+		slot.domain = (uint32_t)strtoul(domain, &end, 16);
+		if ((end && *end) || (slot.domain > 0xffff)) {
+			nvme_err("Invalid bus number: 0x%X\n", slot.domain);
+			return NULL;
+		}
+	} else
 		slot.domain = PCI_MATCH_ANY;
-	slot.bus = atoi(bus);
-	slot.dev = atoi(dev);
-	slot.func = atoi(func);
+
+	slot.bus = (uint32_t)strtoul(bus, &end, 16);
+	if ((end && *end) || (slot.bus > 0xff)) {
+		nvme_err("Invalid bus number: 0x%X\n", slot.bus);
+		return NULL;
+	}
+
+	slot.dev = strtoul(dev, &end, 16);
+	if ((end && *end) || (slot.dev > 0x1f)) {
+		nvme_err("Invalid dev number: 0x%X\n", slot.dev);
+		return NULL;
+	}
+
+	slot.func = strtoul(func, &end, 16);
+	if ((end && *end) || (slot.func > 7)) {
+		nvme_err("Invalid function number: 0x%X\n", slot.func);
+		return NULL;
+	}
+
+	nvme_debug("PCI URL: domain 0x%X, bus 0x%X, dev 0x%X, func 0x%X\n",
+		   slot.domain, slot.bus, slot.dev, slot.func);
 
 	pci_dev = nvme_pci_device_probe(&slot);
 	if (pci_dev) {
