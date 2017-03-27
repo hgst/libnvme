@@ -42,7 +42,9 @@ EXTRA_DIST = autogen.sh exports
 AM_CPPFLAGS = \
 	-O2 \
 	-Wall -Wextra -Wno-unused-parameter \
-	-I$(top_srcdir)/include
+	-I$(top_srcdir)/include \
+	-I$(top_srcdir)/lib/common \
+	-I.
 # -msse4.1 -mavx
 
 

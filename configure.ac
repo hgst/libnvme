@@ -8,7 +8,7 @@ AC_CONFIG_HEADER([include/config.h])
 
 AC_PREFIX_DEFAULT(/usr)
 
-AM_INIT_AUTOMAKE([-Wall foreign subdir-objects])
+AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
 AM_SILENT_RULES([yes])
 
 AC_PROG_CC
