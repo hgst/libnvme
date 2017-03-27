@@ -40,6 +40,7 @@
 #include "nvme_mem.h"
 
 #include <pthread.h>
+#include <sys/user.h> /* PAGE_SIZE */
 
 /*
  * List functions.
