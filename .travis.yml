@@ -1,0 +1,13 @@
+language: c
+# The gcc compiler in the default distro (precise) is too old for libnvme.
+# Hence use trusty.
+dist: trusty
+addons:
+  apt:
+    packages:
+      - build-essential
+      - gcc
+      - libpciaccess-dev
+      - make
+      - libnuma-dev
+script: ci/build.sh
