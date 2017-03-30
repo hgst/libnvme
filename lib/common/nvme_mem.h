@@ -5,7 +5,7 @@
  * "as is," without technical support, and WITHOUT ANY WARRANTY, without
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  * PURPOSE. You should have received a copy of the BSD 2-clause license along
- * with libzbc. If not, see  <http://opensource.org/licenses/BSD-2-Clause>.
+ * with libnvme. If not, see  <http://opensource.org/licenses/BSD-2-Clause>.
  */
 
 #ifndef __NVME_MEMORY_H_
