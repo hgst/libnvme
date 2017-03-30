@@ -107,8 +107,8 @@ static size_t nvme_mem_get_hp_size(void)
 }
 
 /*
- * Allocate a hugepage.
- * Allocate a hugepage descriptor and create its backing file.
+ * Allocate a hugepage descriptor and create its backing file
+ * in hugetlbfs.
  */
 static struct nvme_hugepage *nvme_mem_alloc_hp(unsigned int node_id)
 {
@@ -582,7 +582,7 @@ void *nvme_mem_alloc_node(size_t size, size_t align, unsigned int node_id,
 		   nvme_node_id());
 
 	/* Get a suitable memory pool for the allocation */
-	size_bits = nvme_log2(nvme_align_pow2(size));
+	size_bits = nvme_log2(nvme_align_pow2(nvme_max(size, align)));
 	if (size_bits <= NVME_MP_SIZE_BITS_MIN) {
 		mp = &mm.mp[0];
 	} else if (size_bits <= NVME_MP_SIZE_BITS_MAX) {
