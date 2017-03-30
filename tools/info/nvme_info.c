@@ -1,12 +1,8 @@
 /*
- * (C) Copyright 2017, Western Digital Corporation.
- * All Rights Reserved.
+ * Copyright (c) 2017, Western Digital Corporation or its affiliates.
  *
- * This software is distributed under the terms of the BSD 2-clause license,
- * "as is," without technical support, and WITHOUT ANY WARRANTY, without
- * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
- * PURPOSE. You should have received a copy of the BSD 2-clause license along
- * with libnvme. If not, see  <http://opensource.org/licenses/BSD-2-Clause>.
+ * SPDX-License-Identifier: BSD-2-Clause
+ * Please see COPYING file for license text.
  */
 
 #define _GNU_SOURCE

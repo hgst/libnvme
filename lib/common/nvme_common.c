@@ -2,8 +2,8 @@
  *   BSD LICENSE
  *
  *   Copyright(c) 2010-2016 Intel Corporation. All rights reserved.
- *   Copyright(c) 2012-2014 6WIND S.A.
- *   All rights reserved.
+ *   Copyright(c) 2012-2014 6WIND S.A. All rights reserved.
+ *   Copyright (c) 2017, Western Digital Corporation or its affiliates.
  *
  *   Redistribution and use in source and binary forms, with or without
  *   modification, are permitted provided that the following conditions

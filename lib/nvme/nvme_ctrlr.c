@@ -1,8 +1,8 @@
 /*-
  *   BSD LICENSE
  *
- *   Copyright (c) Intel Corporation.
- *   All rights reserved.
+ *   Copyright (c) Intel Corporation. All rights reserved.
+ *   Copyright (c) 2017, Western Digital Corporation or its affiliates.
  *
  *   Redistribution and use in sourete and binary forms, with or without
  *   modification, are permitted provided that the following conditions

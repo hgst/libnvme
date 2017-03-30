@@ -1,8 +1,8 @@
 /*-
  *   BSD LICENSE
  *
- *   Copyright (c) Intel Corporation.
- *   All rights reserved.
+ *   Copyright (c) Intel Corporation. All rights reserved.
+ *   Copyright (c) 2017, Western Digital Corporation or its affiliates.
  *
  *   Redistribution and use in source and binary forms, with or without
  *   modification, are permitted provided that the following conditions
@@ -84,54 +84,54 @@ enum nvme_intel_smart_attribute_code {
 };
 
 struct nvme_intel_log_page_dir {
-	uint8_t	version[2];
-	uint8_t	reserved[384];
-	uint8_t	read_latency_log_len;
-	uint8_t	reserved2;
-	uint8_t	write_latency_log_len;
-	uint8_t	reserved3[5];
-	uint8_t	temperature_statistics_log_len;
-	uint8_t	reserved4[9];
-	uint8_t	smart_log_len;
-	uint8_t	reserved5[37];
-	uint8_t	marketing_description_log_len;
-	uint8_t	reserved6[69];
+	uint8_t		version[2];
+	uint8_t		reserved[384];
+	uint8_t		read_latency_log_len;
+	uint8_t		reserved2;
+	uint8_t		write_latency_log_len;
+	uint8_t		reserved3[5];
+	uint8_t		temperature_statistics_log_len;
+	uint8_t		reserved4[9];
+	uint8_t		smart_log_len;
+	uint8_t		reserved5[37];
+	uint8_t		marketing_description_log_len;
+	uint8_t		reserved6[69];
 };
 nvme_static_assert(sizeof(struct nvme_intel_log_page_dir) == 512,
 		   "Incorrect size");
 
 struct nvme_intel_rw_latency_page {
-	uint16_t major_revison;
-	uint16_t minor_revison;
-	uint32_t buckets_32us[32];
-	uint32_t buckets_1ms[31];
-	uint32_t buckets_32ms[31];
+	uint16_t	major_revison;
+	uint16_t	minor_revison;
+	uint32_t	buckets_32us[32];
+	uint32_t	buckets_1ms[31];
+	uint32_t	buckets_32ms[31];
 };
 nvme_static_assert(sizeof(struct nvme_intel_rw_latency_page) == 380,
 		   "Incorrect size");
 
 struct nvme_intel_temperature_page {
-	uint64_t current_temperature;
-	uint64_t shutdown_flag_last;
-	uint64_t shutdown_flag_life;
-	uint64_t highest_temperature;
-	uint64_t lowest_temperature;
-	uint64_t reserved[5];
-	uint64_t specified_max_op_temperature;
-	uint64_t reserved2;
-	uint64_t specified_min_op_temperature;
-	uint64_t estimated_offset;
+	uint64_t	current_temperature;
+	uint64_t	shutdown_flag_last;
+	uint64_t	shutdown_flag_life;
+	uint64_t	highest_temperature;
+	uint64_t	lowest_temperature;
+	uint64_t	reserved[5];
+	uint64_t	specified_max_op_temperature;
+	uint64_t	reserved2;
+	uint64_t	specified_min_op_temperature;
+	uint64_t	estimated_offset;
 };
 nvme_static_assert(sizeof(struct nvme_intel_temperature_page) == 112,
 		   "Incorrect size");
 
 struct nvme_intel_smart_attribute {
-	uint8_t	code;
-	uint8_t	reserved[2];
-	uint8_t	normalized_value;
-	uint8_t	reserved2;
-	uint8_t	raw_value[6];
-	uint8_t	reserved3;
+	uint8_t		code;
+	uint8_t		reserved[2];
+	uint8_t		normalized_value;
+	uint8_t		reserved2;
+	uint8_t		raw_value[6];
+	uint8_t		reserved3;
 };
 
 struct __attribute__((packed)) nvme_intel_smart_information_page {
@@ -141,7 +141,7 @@ nvme_static_assert(sizeof(struct nvme_intel_smart_information_page) == 156,
 		   "Incorrect size");
 
 union nvme_intel_feat_power_governor {
-	uint32_t raw;
+	uint32_t	raw;
 	struct {
 		/* Power governor setting: 00h = 25W 01h = 20W 02h = 10W */
 		uint32_t power_governor_setting	: 8;
@@ -152,7 +152,7 @@ nvme_static_assert(sizeof(union nvme_intel_feat_power_governor) == 4,
 		   "Incorrect size");
 
 union nvme_intel_feat_smbus_address {
-	uint32_t raw;
+	uint32_t	raw;
 	struct {
 		uint32_t reserved	           : 1;
 		uint32_t smbus_controller_address  : 8;
@@ -163,7 +163,7 @@ nvme_static_assert(sizeof(union nvme_intel_feat_smbus_address) == 4,
 		   "Incorrect size");
 
 union nvme_intel_feat_led_pattern {
-	uint32_t raw;
+	uint32_t	raw;
 	struct {
 		uint32_t feature_options : 24;
 		uint32_t value	         : 8;
@@ -173,7 +173,7 @@ nvme_static_assert(sizeof(union nvme_intel_feat_led_pattern) == 4,
 		   "Incorrect size");
 
 union nvme_intel_feat_reset_timed_workload_counters {
-	uint32_t raw;
+	uint32_t	raw;
 	struct {
 		/*
 		 * Write Usage: 00 = NOP, 1 = Reset E2, E3,E4 counters;
@@ -187,7 +187,7 @@ nvme_static_assert(sizeof(union nvme_intel_feat_reset_timed_workload_counters) =
 		   "Incorrect size");
 
 union nvme_intel_feat_latency_tracking {
-	uint32_t raw;
+	uint32_t	raw;
 	struct {
 		/*
 		 * Write Usage:
@@ -201,7 +201,7 @@ nvme_static_assert(sizeof(union nvme_intel_feat_latency_tracking) == 4,
 		   "Incorrect size");
 
 struct nvme_intel_marketing_description_page {
-	uint8_t	marketing_product[512];
+	uint8_t		marketing_product[512];
 };
 nvme_static_assert(sizeof(struct nvme_intel_marketing_description_page) == 512,
 		   "Incorrect size");
