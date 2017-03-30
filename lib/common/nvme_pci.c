@@ -57,7 +57,6 @@ static int nvme_pci_device_has_kernel_driver(struct pci_device *dev)
 {
 	char linkname[NVME_PCI_PATH_MAX];
 	char driver[NVME_PCI_PATH_MAX];
-	char *driver_name;
 	ssize_t driver_len;
 
 	snprintf(linkname, sizeof(linkname),
@@ -69,18 +68,9 @@ static int nvme_pci_device_has_kernel_driver(struct pci_device *dev)
 	if ((driver_len <= 0) || (driver_len >= NVME_PCI_PATH_MAX))
 		return 0;
 
-	driver_name = basename(driver);
-
-	nvme_info("Kernel driver %s attached to NVME controller %04x:%02x:%02x.%1u\n",
-		  driver_name,
-		  dev->domain, dev->bus, dev->dev, dev->func);
-
-	/* Those are OK, we can ignore */
-	if (strcmp(driver_name, "uio_pci_generic") == 0 ||
-	    strcmp(driver_name, "vfio-pci") == 0)
-		return 0;
-
-	nvme_err("Device in use\n");
+	nvme_err("NVME controller %04x:%02x:%02x.%1u binded to kernel driver %s\n",
+		 dev->domain, dev->bus, dev->dev, dev->func,
+		 basename(driver));
 
 	return 1;
 }
