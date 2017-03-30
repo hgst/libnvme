@@ -27,10 +27,10 @@ CC="$PTHREAD_CC"
 AC_CHECK_HEADERS([stddef.h stdint.h stdlib.h \
 		  string.h inttypes.h \
 		  unistd.h assert.h])
-AC_CHECK_LIB(pciaccess, pci_device_probe, [], AC_MSG_ERROR([Couldn't find libpciaccess. Try installing libpciaccess]))
-AC_CHECK_HEADER(pciaccess.h, [], [AC_MSG_ERROR([Couldn't find pciaccess.h. Try installing libpciaccess-devel])])
-AC_CHECK_LIB(numa, mbind, [], AC_MSG_ERROR([Couldn't find libnuma. Try installing numactl-libs]))
-AC_CHECK_HEADER(numaif.h, [], [AC_MSG_ERROR([Couldn't find numaif.h. Try installing numactl-devel])])
+AC_CHECK_LIB(pciaccess, pci_device_probe, [], AC_MSG_ERROR([Couldn't find libpciaccess. Try installing pciaccess library.]))
+AC_CHECK_HEADER(pciaccess.h, [], [AC_MSG_ERROR([Couldn't find pciaccess.h. Try installing pciaccess library development package.])])
+AC_CHECK_LIB(numa, mbind, [], AC_MSG_ERROR([Couldn't find libnuma. Try installing numa library package.]))
+AC_CHECK_HEADER(numaif.h, [], [AC_MSG_ERROR([Couldn't find numaif.h. Try installing numa library development package.])])
 
 # CPU flags detection
 if grep "^flags.* sse" /proc/cpuinfo > /dev/null; then
