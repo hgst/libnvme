@@ -37,7 +37,6 @@ static int nvme_mem_get_hp_dir(void)
 	}
 
 	while (fgets(buf, sizeof(buf), f)) {
-
 		n = sscanf(buf, "%s %s %s %s %d %d",
 			   dev, dir, type, opts, &tmp1, &tmp2);
 		if (n != 6)
@@ -47,7 +46,6 @@ static int nvme_mem_get_hp_dir(void)
 			mntdir = dir;
 			break;
 		}
-
 	}
 
 	fclose(f);
@@ -60,11 +58,14 @@ static int nvme_mem_get_hp_dir(void)
 	nvme_debug("hugetlbfs mounted at %s\n", mntdir);
 
 	/* Create a unique subdirectory in the mount point for this process */
-	sprintf(mm.hp_dir, "%s/libnvme.%d.XXXXXX",
-		mntdir, getpid());
+	asprintf(&mm.hp_dir, "%s/libnvme.%d.XXXXXX", mntdir, getpid());
+	if (!mm.hp_dir)
+		return -ENOMEM;
 	if (!mkdtemp(mm.hp_dir)) {
 		nvme_err("Create hugepage directory %s failed %d (%s)\n",
 			 mm.hp_dir, errno, strerror(errno));
+		free(mm.hp_dir);
+		mm.hp_dir = NULL;
 		return -errno;
 	}
 
@@ -342,6 +343,7 @@ static void nvme_mem_hp_cleanup(void)
 	if (mm.hp_dd != -1)
 		close(mm.hp_dd);
 	rmdir(mm.hp_dir);
+	free(mm.hp_dir);
 }
 
 /*

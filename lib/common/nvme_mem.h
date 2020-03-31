@@ -214,7 +214,7 @@ struct nvme_mem {
 	 * Directory where to store hugepage files
 	 * (within hugetlbfs mount).
 	 */
-	char 				hp_dir[PATH_MAX];
+	char 				*hp_dir;
 	int				hp_dd;
 
 	/*

@@ -123,11 +123,10 @@ static inline size_t nvme_str2size(const char *str)
 		/* Fall through */
 	case 'M':
 	case 'm':
-		/* Fall through */
 		size *= 1024;
+		/* Fall through */
 	case 'K':
 	case 'k':
-		/* Fall through */
 		size *= 1024;
 	}
 

@@ -112,6 +112,7 @@ int nvme_set_log_facility(enum nvme_log_facility facility, const char *path)
 	case NVME_LOG_SYSLOG:
 		openlog(path, LOG_NDELAY | LOG_PID, LOG_USER);
 		ret = 0;
+		break;
 	default:
 		ret = -EINVAL;
 		goto out;
