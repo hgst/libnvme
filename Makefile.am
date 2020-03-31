@@ -33,38 +33,32 @@
 
 ACLOCAL_AMFLAGS = -I m4
 
-AUTOMAKE_OPTIONS = subdir-objects
-
 SUBDIRS = . $(subdirs)
-
 EXTRA_DIST = autogen.sh exports
 
 AM_CPPFLAGS = \
 	-O2 \
 	-Wall -Wextra -Wno-unused-parameter \
-	-I$(top_srcdir)/include \
-	-I$(top_srcdir)/lib/common \
-	-I.
+	-I$(top_srcdir)/include
 # -msse4.1 -mavx
-
 
 pkgconfdir = $(libdir)/pkgconfig
 pkgconf_DATA = libnvme.pc
 pkginclude_HEADERS =
 
-noinst_HEADERS =
-
 bin_PROGRAMS =
 noinst_PROGRAMS =
 
+noinst_HEADERS =
 noinst_LTLIBRARIES = libnvme_common.la
 
+include include/Makemodule.am
 include lib/common/Makemodule.am
 
 lib_LTLIBRARIES = libnvme.la
 libnvme_la_DEPENDENCIES = exports libnvme_common.la
+libnvme_ldadd = $(LDADD) libnvme.la
 
 include lib/nvme/Makemodule.am
 include tools/perf/Makemodule.am
 include tools/info/Makemodule.am
-include include/Makemodule.am
