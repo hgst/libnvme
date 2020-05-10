@@ -678,6 +678,24 @@ static int _nvme_qpair_build_prps_sgl_request(struct nvme_qpair *qpair,
 			return -1;
 		}
 
+		/* Address must be dword aligned. */
+		if ((phys_addr & 0x3) != 0) {
+			_nvme_qpair_req_bad_phys(qpair, tr);
+			return -1;
+		}
+
+		/* All SGEs except last must end on a page boundary. */
+		if ((length != remaining_transfer_len) && ((phys_addr + length) % PAGE_SIZE) != 0) {
+			_nvme_qpair_req_bad_phys(qpair, tr);
+			return -1;
+		}
+
+		/* All SGEs except first must start on a page boundary. */
+		if ((sge_count != 0) && (phys_addr % PAGE_SIZE) != 0) {
+			_nvme_qpair_req_bad_phys(qpair, tr);
+			return -1;
+		}
+
 		data_transferred = nvme_min(remaining_transfer_len, length);
 
 		nseg = data_transferred >> PAGE_SHIFT;
@@ -723,18 +741,6 @@ static int _nvme_qpair_build_prps_sgl_request(struct nvme_qpair *qpair,
 				}
 				last_nseg++;
 				cur_nseg++;
-
-				/* physical address and length check */
-				if (remaining_transfer_len ||
-				    (!remaining_transfer_len &&
-				     (cur_nseg < nseg))) {
-					if ((length & (PAGE_SIZE - 1)) ||
-					    unaligned) {
-						_nvme_qpair_req_bad_phys(qpair,
-									 tr);
-						return -1;
-					}
-				}
 			}
 		}
 	}
