@@ -308,7 +308,8 @@ struct nvme_tracker {
 
 	struct nvme_request		*req;
 #if INTPTR_MAX == INT32_MAX
-	int32_t __pad[3];
+	/* We need to add 12 bytes on 32-bit systems so this structure is exactly 4096 bytes. */
+	int8_t __pad[12];
 #elif !defined(INTPTR_MAX)
 #error Need definition of INTPTR_MAX!
 #endif
